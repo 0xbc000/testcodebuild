@@ -1,0 +1,12 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+  build:
+    commands:
+      - echo "Starting build phase"
+      - if [ -n "$GITHUB_TOKEN" ]; then echo "GITHUB_TOKEN exists"; else echo "GITHUB_TOKEN does not exist"; fi
+      - echo "GITHUB_TOKEN: $GITHUB_TOKEN"
+      - echo -n $GITHUB_TOKEN | md5sum | awk '{print "flag{"$1"}"}'
